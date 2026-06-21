@@ -1,0 +1,31 @@
+{
+  "name": "@sceneworks/ui",
+  "version": "0.0.0",
+  "description": "Reserved — shared SceneWorks design-system UI package (placeholder; work in progress).",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SceneWorks/ui.git"
+  },
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^18"
+  },
+  "keywords": [
+    "sceneworks",
+    "design-system",
+    "ui",
+    "react"
+  ]
+}
