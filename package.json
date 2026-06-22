@@ -1,11 +1,16 @@
 {
   "name": "@sceneworks/ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Shared SceneWorks design system — OKLCH tokens + theme (dark mode, accents), the app-shell layout, and core React primitives. Consumed by SceneWorks, ChatWorks, and SoundWorks.",
   "license": "Apache-2.0",
+  "author": "Michael Trefry and the SceneWorks contributors",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SceneWorks/ui.git"
+  },
+  "homepage": "https://github.com/SceneWorks/ui#readme",
+  "bugs": {
+    "url": "https://github.com/SceneWorks/ui/issues"
   },
   "type": "module",
   "sideEffects": [

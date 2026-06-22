@@ -2,18 +2,23 @@
 
 The **shared SceneWorks design system** — OKLCH design tokens + theme (dark mode, accent swatches), the app-shell layout, and core React primitives — extracted from SceneWorks and consumed by **SceneWorks, ChatWorks, and SoundWorks**.
 
-> Status: foundation in progress (Shortcut epic 7217). Being extracted from `SceneWorks/apps/web` incrementally — tokens/theme + shell + core primitives first.
+> Status: `0.1.0` — the design-system **foundation** (tokens/theme + shell + core primitives), extracted from `SceneWorks/apps/web` (Shortcut epic 7217). Pre-1.0: expect change. Being migrated incrementally.
 
 ## Install
 
-While iterating, consume as a git dependency (publish to npm follows once stable):
+Published to npm (public, `@sceneworks` scope). Pin an exact version — the three
+consumers (SceneWorks, ChatWorks, SoundWorks) track it in lockstep:
 
 ```jsonc
 // package.json
 "dependencies": {
-  "@sceneworks/ui": "github:SceneWorks/ui"
+  "@sceneworks/ui": "0.1.0"
 }
 ```
+
+To track unreleased work, use a git dependency instead
+(`"@sceneworks/ui": "github:SceneWorks/ui"`). See [VERSIONING.md](./VERSIONING.md)
+for the full pinning + release convention.
 
 ## Usage
 
