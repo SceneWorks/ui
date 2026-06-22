@@ -36,18 +36,34 @@ Renders **bold**, *italic*, \`code\`, and [links](https://example.com).
 
 > Block quotes too.`;
 
+// A child that throws, to exercise the real ErrorBoundary fallback (sc-7366).
+function Bomb() {
+  throw new Error("Demo: a child component threw during render.");
+}
+
 export default function App() {
   const [theme, setTheme] = useState("light");
   const [accent, setAccent] = useState(DEFAULT_ACCENT);
   const [active, setActive] = useState("image");
   const [selected, setSelected] = useState("a");
   const [modalOpen, setModalOpen] = useState(false);
+  const [crash, setCrash] = useState(false);
 
   useEffect(() => {
     const html = document.documentElement;
     html.setAttribute("data-theme", theme);
     html.setAttribute("data-accent", accent);
   }, [theme, accent]);
+
+  // Full-screen ErrorBoundary fallback demo (.app-fallback / .empty-panel /
+  // .toolbar / .primary-action / .secondary-action). "Reload" returns to the shell.
+  if (crash) {
+    return (
+      <ErrorBoundary>
+        <Bomb />
+      </ErrorBoundary>
+    );
+  }
 
   return (
     <ErrorBoundary>
@@ -134,10 +150,32 @@ export default function App() {
 
           <section style={{ padding: 24, overflowY: "auto" }}>
             <p className="eyebrow">@sceneworks/ui v{version}</p>
-            <div style={{ display: "flex", gap: 10, margin: "12px 0 24px" }}>
-              <button type="button" className="icon-btn" onClick={() => setModalOpen(true)}>
+            <p className="view-copy" style={{ marginBottom: 16 }}>
+              Button / action / card foundation (sc-7366):
+            </p>
+            <div className="toolbar" style={{ marginBottom: 20 }}>
+              <button type="button" className="primary-action" onClick={() => setModalOpen(true)}>
                 <Icon.Sparkle /> Open Modal
               </button>
+              <button type="button" className="secondary-action">
+                Secondary
+              </button>
+              <button type="button" className="secondary-action danger">
+                Secondary danger
+              </button>
+              <button type="button" className="danger-action">
+                Danger
+              </button>
+              <button type="button" className="secondary-action" onClick={() => setCrash(true)}>
+                Crash → ErrorBoundary
+              </button>
+            </div>
+            <div className="segmented-control" style={{ marginBottom: 24 }}>
+              <button type="button" className="active">
+                One
+              </button>
+              <button type="button">Two</button>
+              <button type="button">Three</button>
             </div>
             <Markdown content={MD} />
           </section>

@@ -2,18 +2,22 @@
  *
  * Assembled from verbatim ranges of SceneWorks apps/web/src/styles.css (the
  * single source of truth until story sc-7221 cuts apps/web over to import this).
- * Each section below cites its source line range and is byte-identical to it.
+ * Verbatim-range sections cite their source line range and are byte-identical to it.
  *
  * Covers: the reset, the .app/.sidebar/.nav-item/.workspace/.topbar shell, the
  * topbar .icon-btn + accent picker, .status-dot (StatusDot), .compact-selector*
- * (CompactSelector), .modal-backdrop (Modal), and .markdown-body (Markdown).
+ * (CompactSelector), .modal-backdrop (Modal), .markdown-body (Markdown), and the
+ * shared button/action/card foundation (.primary-action / .secondary-action /
+ * .danger-action / .toolbar / .segmented-control / .file-upload-button /
+ * .empty-panel / .app-fallback / .eyebrow / .view-copy — used by ErrorBoundary and
+ * shared surfaces).
  *
- * NOT YET HERE: the shared button/action/card layer (.primary-action,
- * .secondary-action, .toolbar, .empty-panel, .app-fallback) that ErrorBoundary's
- * fallback screen uses — in styles.css those are entangled in large multi-selector
- * rules mixed with screen-specific selectors, so they can't be lifted at primitive
- * granularity without either dragging the contiguous Buttons foundation or
- * rewriting rules. Tracked as a decision/follow-up (see story sc-7220 comments).
+ * The foundation section at the END (story sc-7366) is the one exception to
+ * "byte-identical range": in styles.css those primitive classes are entangled in
+ * large multi-selector rules mixed with screen-specific selectors, so it is
+ * DE-ENTANGLED — property blocks are copied verbatim, but each selector list is
+ * reduced to the design-system primitives (the screen selectors stay in SceneWorks).
+ * Rules are kept in source document order so the cascade is preserved.
  *
  * Import once:  import "@sceneworks/ui/shell.css";
  */
@@ -897,4 +901,213 @@ button:focus-visible {
   padding: 4px 0 4px 14px;
   border-left: 3px solid var(--border-strong, var(--border));
   color: var(--text-muted);
+}
+
+/* ===== Button / action / card foundation (story sc-7366) — DE-ENTANGLED =====
+ * Extracted from SceneWorks styles.css. Unlike the verbatim ranges above, these
+ * primitive classes are woven into large multi-selector rules in styles.css (mixed
+ * with screen-specific selectors), so each rule below keeps the source's PROPERTY
+ * BLOCK byte-for-byte but reduces the selector list to the design-system primitives
+ * (the screen selectors remain in SceneWorks). Rules are in source document order
+ * so the cascade matches (e.g. .secondary-action base@1041 then override@4127).
+ * Source line refs are cited per rule. */
+
+/* Typographic primitives. styles.css:973, :982, :988 */
+.eyebrow {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.empty-state,
+.view-copy {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.view-copy {
+  max-width: 760px;
+  line-height: 1.6;
+}
+
+/* Button-like base styling. styles.css:1013 (primitive members of the shared rule) */
+.file-upload-button,
+.secondary-action,
+.danger-action,
+.segmented-control button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: var(--r-sm);
+  font-size: 13.5px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  transition: background var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+}
+
+.file-upload-button:hover,
+.secondary-action:hover:not(:disabled),
+.segmented-control button:hover:not(:disabled) {
+  background: var(--surface-hover);
+}
+
+/* Primary actions. styles.css:1090 */
+.primary-action {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: transparent;
+  font-weight: 600;
+  box-shadow: 0 1px 2px color-mix(in oklch, var(--accent) 40%, transparent),
+    0 6px 18px color-mix(in oklch, var(--accent) 25%, transparent);
+}
+
+.primary-action:hover:not(:disabled) {
+  background: var(--accent-strong);
+}
+
+.primary-action {
+  min-height: 44px;
+  padding: 0 20px;
+  font-size: 14.5px;
+  border-radius: var(--r-md);
+}
+
+/* Danger button variant. styles.css:1122 */
+.danger-action {
+  border-color: color-mix(in oklch, var(--danger) 45%, var(--border));
+  background: var(--danger-soft);
+  color: color-mix(in oklch, var(--danger) 75%, var(--text));
+}
+
+.danger-action:hover:not(:disabled) {
+  background: color-mix(in oklch, var(--danger) 18%, var(--surface));
+  color: var(--danger);
+}
+
+/* File upload behaves like a button. styles.css:1133 */
+.file-upload-button {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.file-upload-button input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Segmented control. styles.css:1164 (already primitive-only — verbatim) */
+.segmented-control,
+.compact-segment {
+  display: inline-flex;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 3px;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+
+.segmented-control button,
+.compact-segment button {
+  min-height: 28px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-weight: 500;
+  box-shadow: none;
+  white-space: nowrap;
+}
+
+.segmented-control button:hover,
+.compact-segment button:hover {
+  color: var(--text);
+  background: transparent;
+}
+
+.segmented-control button.active,
+.compact-segment button.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  border-color: transparent;
+}
+
+.compact-segment {
+  padding: 2px;
+}
+
+.compact-segment button {
+  min-height: 30px;
+  padding: 6px 10px;
+}
+
+/* Toolbars. styles.css:1213 (.toolbar only) */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+/* secondary-action sizing + danger modifier. styles.css:4127 */
+.secondary-action {
+  justify-self: start;
+  min-height: 32px;
+  padding: 0 12px;
+  background: var(--surface-2);
+}
+
+.secondary-action.danger {
+  border-color: color-mix(in oklch, var(--danger) 45%, var(--border));
+  color: var(--danger);
+}
+
+.secondary-action.danger:hover:not(:disabled) {
+  background: var(--danger-soft);
+}
+
+/* Panel surfaces. styles.css:7979 + :8059 */
+.empty-panel {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--r-md);
+}
+
+.empty-panel {
+  padding: 18px;
+  color: var(--text-muted);
+  font-size: 13px;
+  background: var(--surface-2);
+  border-style: dashed;
+}
+
+/* App error fallback (ErrorBoundary). styles.css:8067 + :8094 */
+.app-fallback {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--bg);
+}
+
+.app-fallback-panel {
+  width: min(100%, 520px);
+  display: grid;
+  gap: 14px;
+  color: var(--text);
 }

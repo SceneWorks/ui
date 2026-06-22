@@ -2,7 +2,7 @@
 
 The **shared SceneWorks design system** — OKLCH design tokens + theme (dark mode, accent swatches), the app-shell layout, and core React primitives — extracted from SceneWorks and consumed by **SceneWorks, ChatWorks, and SoundWorks**.
 
-> Status: `0.1.0` — the design-system **foundation** (tokens/theme + shell + core primitives), extracted from `SceneWorks/apps/web` (Shortcut epic 7217). Pre-1.0: expect change. Being migrated incrementally.
+> Status: `0.2.0` — the design-system **foundation** (tokens/theme + shell + core primitives + the button/action/card layer), extracted from `SceneWorks/apps/web` (Shortcut epic 7217). Pre-1.0: expect change. Being migrated incrementally.
 
 ## Install
 
@@ -12,7 +12,7 @@ consumers (SceneWorks, ChatWorks, SoundWorks) track it in lockstep:
 ```jsonc
 // package.json
 "dependencies": {
-  "@sceneworks/ui": "0.1.0"
+  "@sceneworks/ui": "0.2.0"
 }
 ```
 
