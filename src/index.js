@@ -10,7 +10,7 @@
 //   import "@sceneworks/ui/shell.css";   // app-shell layout (.app/.sidebar/...)
 //
 // Keep in sync with package.json "version" on each release (see VERSIONING.md).
-export const version = "0.1.0";
+export const version = "0.2.0";
 
 // Accent metadata (story sc-7219) — the swatch table, default accent, and id
 // validator that pair with the [data-accent] palettes in theme.css.

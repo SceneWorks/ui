@@ -3,6 +3,27 @@
 All notable changes to `@sceneworks/ui`. This project adheres to
 [semver](https://semver.org); see [VERSIONING.md](./VERSIONING.md).
 
+## 0.2.0 — 2026-06-22
+
+Adds the shared **button / action / card foundation** (sc-7366), completing
+ErrorBoundary's fallback styling.
+
+### Added
+
+- Button/action primitives: `.primary-action`, `.secondary-action` (+ `.danger`
+  modifier), `.danger-action`, `.file-upload-button`, `.segmented-control` /
+  `.compact-segment`, `.toolbar`.
+- Surface/typography primitives: `.empty-panel`, `.empty-state`, `.eyebrow`,
+  `.view-copy`, `.app-fallback` / `.app-fallback-panel`.
+- All in `@sceneworks/ui/shell.css`. These classes are **de-entangled** from
+  SceneWorks' shared multi-selector rules — property blocks are byte-identical to
+  the source; selector lists are reduced to the design-system primitives.
+
+### Fixed
+
+- `ErrorBoundary`'s fallback screen now renders fully styled (was the one gap from
+  0.1.0 / sc-7220).
+
 ## 0.1.0 — 2026-06-22
 
 First real release: the design-system **foundation**, extracted from SceneWorks
