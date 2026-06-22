@@ -9,7 +9,8 @@
 //   import "@sceneworks/ui/theme.css";   // OKLCH tokens, dark mode, accents
 //   import "@sceneworks/ui/shell.css";   // app-shell layout (.app/.sidebar/...)
 //
-export const version = "0.0.0";
+// Keep in sync with package.json "version" on each release (see VERSIONING.md).
+export const version = "0.1.0";
 
 // Accent metadata (story sc-7219) — the swatch table, default accent, and id
 // validator that pair with the [data-accent] palettes in theme.css.
